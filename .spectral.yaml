@@ -1,0 +1,48 @@
+extends: [[spectral:oas, all]]
+
+formats: ["oas3"]
+
+rules:
+  example-matches-schema:
+    description: Ensures example objects match their schema implementation
+    severity: error
+    given:
+      - $.paths..responses..content..examples
+      - $.paths..requestBody..content..examples
+      - $.components.examples
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            summary:
+              type: string
+            value:
+              type: object
+
+  response-example-required:
+    description: All responses should include examples
+    severity: error
+    given: $.paths..responses[*]
+    then:
+      field: content
+      function: truthy
+
+  request-body-example-required:
+    description: All request bodies should include examples
+    severity: error
+    given: $.paths..requestBody
+    then:
+      field: content
+      function: truthy
+
+  schema-description-required:
+    description: All schemas should have descriptions
+    severity: error
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy

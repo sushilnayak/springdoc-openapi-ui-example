@@ -1,0 +1,15 @@
+{
+  "name": "springdoc-openapi-ui-example",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:openapi": "spectral lint src/main/resources/openapi.yaml"
+  },
+  "devDependencies": {
+    "@stoplight/spectral-cli": "^6.11.0"
+  }
+}
